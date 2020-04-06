@@ -6,6 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "FPSGameMode.generated.h"
 
+class APawn;
+
 UCLASS()
 class AFPSGameMode : public AGameModeBase
 {
@@ -14,6 +16,17 @@ class AFPSGameMode : public AGameModeBase
 public:
 
 	AFPSGameMode();
+
+	void CompleteMission(APawn* InstigatorPawn);
+
+	UFUNCTION(BlueprintImplementableEvent, Category="GameMode")
+	void OnMissionCompleted(APawn* InstigatorPawn);
+
+protected:
+
+	UPROPERTY(EditDefaultsOnly,Category = "Spectator")
+	TSubclassOf<AActor> SpectatingViewpointClass;
+
 };
 
 
